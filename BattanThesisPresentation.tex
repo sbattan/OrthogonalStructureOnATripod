@@ -58,8 +58,8 @@
 \frame{\frametitle{What Is Going On?}
 	\begin{itemize}
 		\item Intersection of multivariable calculus, linear algebra, and numerical mathematics.
-		\item Extension of the forefront of numerical research that defines a structure with which mathematicians can manipulate monster polynomials.
 		\item Presentation of four increasingly efficient algorithms that construct an orthogonal basis that accurately represents the structure of polynomials on any 3D tripod.
+		\item Extension of the forefront of numerical research by defining a structure that can manipulate monster polynomials.
 	\end{itemize}
 }
 \frame{\frametitle{What Is Orthogonality?}
@@ -76,25 +76,26 @@
 	\begin{itemize}
 		\item Orthogonality between two functions: $\langle f,g\rangle = 0$.
 		\\ \ \ \ - \ Orthogonal means $90^\circ$ and $\cos(90)=0$.
-		\\ \ \ \ - \ Euclidean: $\cos(\theta) = \frac{\langle \mathbf{x},\mathbf{y}\rangle}{||\mathbf{x}|| \ ||\mathbf{y}||}$. %, where $\theta$ is the angle between two vectors $x$ and $y$. 
+		\\ \ \ \ - \ Euclidean: $\cos(\theta) = \frac{\langle \ \mathbf{x}\ ,\ \mathbf{y}\ \rangle}{||\mathbf{x}|| \ ||\mathbf{y}||}$.
 		\item Higher dimensions use sums of functions $f = \sum a_n P_n (x)$.
 		\item Inner product $\langle f, g\rangle$ must be commutative, linear in each component, and positive definite.
+		\item Thesis: $OB_n = \{\hat{P}_n, \hat{Q}_n, \hat{R}_n\}$.
 	\end{itemize}
 }
-\frame{\frametitle{What Are Iterative And Recursive Algorithms?}
+\frame{\frametitle{What Are Inductive \& Recursive Algorithms?}
 	\begin{itemize}
-		\item Solving a larger problem in a series of smaller steps that may or may not depend on the previous step.
+		\item Solve a larger and more-complex problem in a sequence of smaller and simpler steps using previous knowledge.
 		\item The solution to our current execution of the algorithm(s) utilizes results from the execution of previous algorithm(s).
 		\item Specifically, three-term recursion: \\ $F_n = F_{n-1} + F_{n-2}$ with initial values $F_0 = 0$ and $F_1 = 1$.
 		\item Minimizes dependencies and redundant computations \\ $\Longrightarrow$ improves algorithmic efficiency.
 	\end{itemize}
 }
-\frame{\frametitle{Research Goals \& Applications}
+\frame{\frametitle{Research Goals, Applications, \& Extensions}
 	\begin{itemize}
-		\item Exploit orthogonality, iteration, recursion, and computerized mathematics to improve algorithmic efficiency, which is crucial in the world of ``big data."
-		\item Approximate polynomials on a 3D tripod by using orthogonal infinite sums.
+		\item Exploit orthogonality, induction, and recursion, to improve algorithmic efficiency, which is vital with ``Big Data."
+		\item Approximate polynomials with orthogonal infinite series.
 		\item Fourier orthogonal series and signal readings: $$f = \sum_{i=1}^\infty a_i P_i + \sum_{i=1}^\infty b_i Q_i + \sum_{i=1}^\infty c_i R_i + d_0.$$
-		\item Expand the current study of all orthogonal structures.
+		\item Expand the current study of all orthogonal structures: Yuan Xu and Sheehan Olver.
 	\end{itemize}
 }
 
@@ -106,6 +107,7 @@
 
 
 \frame{\frametitle{Desired Inner Product Space}
+	Bilinear form:
 	\begin{align*}
 		\langle f, g\rangle &= \int_0^1 f(x,0,0)g(x,0,0) dx \\
 					&+  \int_0^1 f(0,y,0)g(0,y,0) dy \\
@@ -123,13 +125,13 @@
 			n=2: & x^2 & xy & xz & y^2 & yz & z^2 \\
 			n=3: & x^3 & x^2y & xy^2 & x^2z & xz^2 & y^3 & y^2z & yz^2 & z^3 & xyz.
 		\end{array}$$
-	Polynomial Ideals: $f \in \langle p_1, \ldots, p_n\rangle \Leftrightarrow \exists q_i : f = \sum_{i=1}^n\{ p_i\times q_i \}.$
+	Polynomial Ideal: $f \in \langle p_1, \ldots, p_n\rangle \Leftrightarrow \exists q_i : f = \sum_{i=1}^n \{p_i\times q_i \}.$
 	
 	\vspace*{2mm}
-	Our inner product space cannot contain $\langle xy, xz, yz \rangle$.
+	Our inner product space's domain cannot contain $\langle xy, xz, yz \rangle$.
 }
 \frame{\frametitle{Inner Product Space's Domain Dimension}
-	Restricted $\mathbb{R} [x, y, z] / \langle xy, xz, yz \rangle$ bases:
+	Restricted $\mathbb{R} [x, y, z] \setminus \langle xy, xz, yz \rangle$ bases:
 		$$\begin{array}{llll}
 			n=0: & 1 \\
 			n=1: & x & y & z \\
@@ -137,8 +139,8 @@
 			n=3: & x^3 & y^3 & z^3.
 		\end{array}$$
 	\begin{thm} Our inner product space's restrictive domain has dimension:
-		$$\text{When }n=0, dim(\mathbb{R}_n [x, y, z] / \langle xy, xz, yz\rangle) = 1.$$
-		$$\forall n\in \mathbb{N} : n > 0, dim(\mathbb{R}_n [x, y, z] / \langle xy, xz, yz\rangle) = 3.$$
+		$$\text{When }n=0, dim(\mathbb{R}_n [x, y, z] \setminus \langle xy, xz, yz\rangle) = 1.$$
+		$$\forall n\in \mathbb{N} : n > 0, dim(\mathbb{R}_n [x, y, z] \setminus \langle xy, xz, yz\rangle) = 3.$$
 	\end{thm}
 }
 
@@ -150,19 +152,19 @@
 
 
 \frame{\frametitle{Na\"ive Algorithm}
-	$V_n = \mathbb{R}_n [x, y, z] / \langle xy, xz, yz\rangle$ is the $n^{th}$-degree inner product space of the restricted tripod.
+	$V_n = n^{th}$-degree inner product space of the restricted tripod.
 	
 	\vspace*{2mm}
-	Monic: $P_n = x^n + \langle$ lower-degree combination of$x,y,z\rangle$.
+	Monic: $P_n = x^n + \langle$ lower-degree combination of $x,y,z \ \rangle$.
 	
 	\vspace*{2mm}Construct the monic polynomial basis $B_n = \{P_n, Q_n, R_n\}$:
 		$$P_n(x,y,z) = x^n + \sum_{i=1}^{n-1}a_i^Px^i + \sum_{i=1}^{n-1}b_i^Py^i + \sum_{i=1}^{n-1}c_i^Pz^i + d_0^P.$$
-	Since each basic element is monic, we can determine them by $\langle P_n, x^j\rangle = \langle P_n,y^j\rangle = \langle P_n, z^j\rangle = 0.$
+	Since each basic element is monic, we can determine them by $\langle P_n, x^j\rangle = \langle P_n,y^j\rangle = \langle P_n, z^j\rangle = 0$ for each $j = 0, 1, \ldots, n-1$.
 		
 	\vspace*{2mm}
 	$\ldots$
 }
-\frame{\frametitle{Na\"ve Algorithm Complexity}
+\frame{\frametitle{Na\"ive Algorithm Complexity}
 	Three $(3n-2)\times(3n-2)$ matrices:
 	
 	\vspace*{2mm}
@@ -175,7 +177,7 @@
 	Given $B_n = \{P_n, Q_n, R_n\}$ we can use elementary linear algebra techniques to construct $OB_n = \{\hat{P}_n, \hat{Q}_n, \hat{R}_n\}$. 
 }
 \frame{\frametitle{Basic Algorithm}
-	Introduce iteration to similarly construct $B_n = \{P_n, Q_n, R_n\}$:
+	Introduce induction to similarly construct $B_n = \{P_n, Q_n, R_n\}$:
 	\begin{align*}
 	P_n(x, y, z) = x^n + \sum_{i=1}^{n-1} a_i^P&P_i(x,y,z) + \sum_{i=1}^{n-1} b_i^PQ_i(x,y,z) \\
 				&+ \sum_{i=1}^{n-1} c_i^PR_i(x,y,z) +d_0^P.
@@ -233,6 +235,9 @@
 	P_n(x, y, z) = x&P_{n-1}(x, y, z) + \sum_{i=1}^{n-1} a_i^PP_i(x, y, z) \\
 				&+ \sum_{i=1}^{n-1} b_i^PQ_i(x, y, z) + \sum_{i=1}^{n-1} c_i^PR_i(x,y,z) +d_0^P.
 	\end{align*}
+	Mutually-Orthogonal: $P_n = \langle$any linear combination of $x,y,z\rangle$.
+	
+	\vspace*{2mm}
 	Directly compute each element after coefficient determination:
 	\begin{align*}
 		P_n(x,y,z) = (x&-a_{n-1}^P)P_{n-1}(x,y,z) + a_{n-2}^PP_{n-2}(x,y,z) \\
@@ -249,15 +254,12 @@
 	\begin{tikzpicture}\draw[color=gray,step=.1cm] (-0.01,-0.01) grid (0.3,0.3);\end{tikzpicture} .
 		
 	\vspace*{2mm}
-	Given $B_n = \{P_n, Q_n, R_n\}$ we can use Gram-Schmidt to construct $OB_n = \{\hat{P}_n, \hat{Q}_n, \hat{R}_n\}$. 
+	Given $B_n = \{P_n, Q_n, R_n\}$ we can use Gram-Schmidt to construct $OB_n = \{\hat{P}_n, \hat{Q}_n, \hat{R}_n\}$ with diagonalization. 
 }
 \frame{\frametitle{Brilliant Algorithm}
-	Mutually-Orthogonal: $P_n = \langle$any linear combination of $x,y,z\rangle$.
-	
-	\vspace*{2mm}
 	Orthonormal: mutually-orthogonal polynomials $\langle P_n, P_n \rangle = 1$.
 	
-	\vspace*{2mm} Again construct $OB_n = \{\hat{P}_n, \hat{Q}_n, \hat{R}_n\}$ with base cases $OB_0 = \{1\}$ and $OB_1 = \{x-\frac{1}{6}, y -\frac{1}{6}, z -\frac{1}{6}\}$:
+	\vspace*{2mm} Again construct $B_n$ by using $OB_n = \{\hat{P}_n, \hat{Q}_n, \hat{R}_n\}$ with the base cases $OB_0 = \{1\}$ and $OB_1 = \{x-\frac{1}{6}, y -\frac{1}{6}, z -\frac{1}{6}\}$:
 	\begin{align*}
 	P_n(x, y, z) = x&\hat{P}_{n-1}(x, y, z) + \sum_{i=1}^{n-1} a_i^P\hat{P}_i(x, y, z) \\
 				&+ \sum_{i=1}^{n-1} b_i^P\hat{Q}_i(x, y, z) + \sum_{i=1}^{n-1} c_i^P\hat{R}_i(x,y,z) +d_0^P.
@@ -288,9 +290,9 @@
 }
 \frame{\frametitle{Research Recap}
 	\begin{itemize}
-		\item Establish an orthogonal basis of our inner product space on $\mathbb{R} [x, y, z] / \langle xy, xz, yz \rangle$ that accurately represents the structure of [monster] polynomials on any 3D tripod.
-		\item Na\"ve: arbitrary monic polynomials. \\ \ \ \ - \ Three $(3n-2) \times (3n-2)$ matrices.
-		\item Basic: iterative monic polynomials. \\ \ \ \ - \ $3(n-1)$ \ $3 \times 3$ matrices.
+		\item Establish an orthogonal basis of our inner product space on $\mathbb{R} [x, y, z] \setminus \langle xy, xz, yz \rangle$ that accurately represents the structure of [monster] polynomials on any 3D tripod.
+		\item Na\"ive: arbitrary monic polynomials. \\ \ \ \ - \ Three $(3n-2) \times (3n-2)$ matrices.
+		\item Basic: inductive monic polynomials. \\ \ \ \ - \ $3(n-1)$ \ $3 \times 3$ matrices.
 		\item Clever: recursive monic polynomials. \\ \ \ \ - \ Six $3 \times 3$ matrices.
 		\item Brilliant: orthonormal polynomials. \\ \ \ \ - \ Zero matrices.
 	\end{itemize}
@@ -301,6 +303,7 @@
 
 
 \section{}\frame{\frametitle{Questions?}}
+
 
 
 
